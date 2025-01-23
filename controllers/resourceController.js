@@ -25,31 +25,39 @@ exports.getResourceById = async (req, res) => {
   };
   
   
+// exports.updateResource = async (req, res) => {
+//   try {
+//    const {firstName,lastName,email,password,accountType}=req.body;
+//    const userId=req.params.Id;
+//   console.log(userId);
+//   console.log("req.body",req.body);
+//     const updatedResource = await Resource.findByIdAndUpdate(userId,{
+//       firstName:firstName,
+//       lastName:lastName,
+//       password:password,
+//       email:email,
+//       accountType:accountType,
+//     }, { new: true});
+
+//     if (!updatedResource) {
+//       return res.status(404).json({ error: "Resource not found" });
+//     }
+//    console.log("resource updated successfully");
+//     res.json({ message: "Resource updated successfully", resource: updatedResource });
+//   } catch (error) {
+//     res.status(500).json({ error: "Error updating resource", details: error.message });
+//   }
+// };
+
 exports.updateResource = async (req, res) => {
   try {
-   const {firstName,lastName,email,password,accountType}=req.body;
-   const userId=req.params.Id;
-  console.log(userId);
-  console.log("req.body",req.body);
-    const updatedResource = await Resource.findByIdAndUpdate(userId,{
-      firstName:firstName,
-      lastName:lastName,
-      password:password,
-      email:email,
-      accountType:accountType,
-    }, { new: true});
-
-    if (!updatedResource) {
-      return res.status(404).json({ error: "Resource not found" });
-    }
-   console.log("resource updated successfully");
-    res.json({ message: "Resource updated successfully", resource: updatedResource });
-  } catch (error) {
-    res.status(500).json({ error: "Error updating resource", details: error.message });
+    const resource = await Resource.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    if (!resource) return res.status(404).json({ error: "Resource not found" });
+    res.json({ message: "Resource updated", resource });
+  } catch (err) {
+    res.status(400).json({ error: err.message });
   }
 };
-
-
   
 
 
