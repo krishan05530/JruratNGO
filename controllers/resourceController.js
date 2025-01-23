@@ -24,24 +24,6 @@ exports.getResourceById = async (req, res) => {
     }
   };
   
-  // Update a resource by ID
-// exports.updateResource = async (req, res) => {
-//     try {
-  
-//       const updatedResource = await Resource.findByIdAndUpdate(req.params.id, req.body, {
-//         new: true,
-//        // runValidators: true, // Ensures validation rules are applied
-//       });
-  
-//       if (!updatedResource) {
-//         return res.status(404).json({ error: "Resource not found" });
-//       }
-  
-//       res.json({ message: "Resource updated successfully", resource: updatedResource });
-//     } catch (error) {
-//       res.status(500).json({ error: "Error updating resource", details: error.message });
-//     }
-//   };
   
 exports.updateResource = async (req, res) => {
   try {
